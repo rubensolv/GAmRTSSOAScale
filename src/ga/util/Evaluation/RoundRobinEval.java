@@ -103,12 +103,12 @@ public class RoundRobinEval implements RatePopulation {
 		}
 		// atualizar valores.
 		BigDecimal toUpdate = pop.getChromosomes().get(chrUpdate);
-		if(toUpdate != null){
+		if (toUpdate != null) {
 			toUpdate = toUpdate.add(BigDecimal.ONE);
 			HashMap<Chromosome, BigDecimal> chrTemp = pop.getChromosomes();
 			chrTemp.put(chrUpdate, toUpdate);
-		}else{
-			System.out.println("Problem to find "+ chrUpdate.toString());
+		} else {
+			System.out.println("Problem to find " + chrUpdate.toString());
 		}
 	}
 
@@ -217,11 +217,7 @@ public class RoundRobinEval implements RatePopulation {
 	 * @return True se estiver vazias
 	 */
 	private boolean hasSOAArq() {
-
-		if (hasSOACentralFile()) {
-			return true;
-		}
-
+		updateSOACLientFull();
 		for (String soaFolder : this.SOA_Folders) {
 			String strConfig = soaFolder;
 			File f = new File(strConfig);
@@ -233,6 +229,15 @@ public class RoundRobinEval implements RatePopulation {
 		}
 
 		return false;
+	}
+
+	private void updateSOACLientFull() {
+		this.SOA_Folders.clear();
+		File configSOAFolder = new File(pathSOA);
+		for (File folder : configSOAFolder.listFiles()) {
+			SOA_Folders.add(folder.getAbsolutePath());
+		}
+
 	}
 
 	/**
