@@ -40,6 +40,12 @@ public class Selection {
 		//System.out.println("printing the new population after crossover");
 		//printMap(newPopulation.getChromosomes());
 		newPopulation=rp.mutation(newPopulation);
+		if(ConfigurationsGA.INCREASING_INDEX==true)
+		{
+		newPopulation=rp.IncreasePopulation(newPopulation);
+		newPopulation=rp.DecreasePopulation(newPopulation);
+		}
+
 		//System.out.println("printing the new population after mutation");
 		//printMap(newPopulation.getChromosomes());
 
