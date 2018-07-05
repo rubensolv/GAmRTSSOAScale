@@ -97,6 +97,60 @@ public class Reproduction {
 		p.setChromosomes(chromosomesMutated);
 		return p;
 	}
+	
+	public static Population IncreasePopulation(Population pop){
+
+		HashMap<Chromosome, BigDecimal> chromosomesMutated = new HashMap<>();
+		for(Chromosome c : pop.getChromosomes().keySet()){
+
+			Chromosome newCh=new Chromosome();
+			newCh.setGenes((ArrayList<Integer>) c.getGenes().clone());
+			Chromosome origCh=new Chromosome();
+			origCh.setGenes((ArrayList<Integer>) c.getGenes().clone());
+
+			double IncreasePercent = ConfigurationsGA.INCREASING_RATE;
+			boolean m = rand.nextFloat() <= IncreasePercent;
+
+			if(m)
+			{
+				//newCh.getGenes().set(i, rand.nextInt(ConfigurationsGA.QTD_SCRIPTS));
+				newCh.getGenes().add(rand.nextInt(ConfigurationsGA.QTD_SCRIPTS));
+				chromosomesMutated.put(newCh, BigDecimal.ZERO);
+			}
+			
+			chromosomesMutated.put(origCh, BigDecimal.ZERO);
+		}
+		pop.setChromosomes(chromosomesMutated);
+		return pop;
+		
+	}
+	
+	public static Population DecreasePopulation(Population pop){
+
+		HashMap<Chromosome, BigDecimal> chromosomesMutated = new HashMap<>();
+		for(Chromosome c : pop.getChromosomes().keySet()){
+
+			Chromosome newCh=new Chromosome();
+			newCh.setGenes((ArrayList<Integer>) c.getGenes().clone());
+			Chromosome origCh=new Chromosome();
+			origCh.setGenes((ArrayList<Integer>) c.getGenes().clone());
+
+			double decreasePercent = ConfigurationsGA.DECREASING_RATE;
+			boolean m = rand.nextFloat() <= decreasePercent;
+
+			if(m && newCh.getGenes().size()>=2)
+			{
+				//newCh.getGenes().set(i, rand.nextInt(ConfigurationsGA.QTD_SCRIPTS));
+				newCh.getGenes().remove(rand.nextInt(newCh.getGenes().size()));
+				chromosomesMutated.put(newCh, BigDecimal.ZERO);
+			}
+			
+			chromosomesMutated.put(origCh, BigDecimal.ZERO);
+		}
+		pop.setChromosomes(chromosomesMutated);
+		return pop;
+		
+	}
 
 
 }
