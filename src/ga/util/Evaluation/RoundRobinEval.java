@@ -354,7 +354,7 @@ public class RoundRobinEval implements RatePopulation {
 	public void finishProcess() {
 		for (String soaFolder : this.SOA_Folders) {
 			String strConfig = soaFolder;
-			File f = new File(strConfig);
+			File f = new File(strConfig+"/exit");
 			try {
 				f.createNewFile();
 			} catch (IOException e) {
