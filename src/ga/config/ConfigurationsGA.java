@@ -4,7 +4,7 @@ public final class ConfigurationsGA {
 	//total de scripts que serão utilizados no teste. ex.: 300 = 0-299
 	public final static int QTD_SCRIPTS = 300;
 	//tamanho fixo do cromossomo
-	public final static int SIZE_CHROMOSOME = 5;
+	public final static int SIZE_CHROMOSOME = 10;
 	//tamanho fixo da população
 	public final static int SIZE_POPULATION = 20;
 	//Total de jobs que serão enviados ao cluster
@@ -18,7 +18,7 @@ public final class ConfigurationsGA {
 	//taxa mutacao
 	public final static double MUTATION_RATE = 0.05;
 	//Increasing-decreasing index activated
-	public final static boolean INCREASING_INDEX=false;
+	public final static boolean INCREASING_INDEX=true;
 	//increasing rate
 	public final static double INCREASING_RATE = 0.2;
 	//decreasing rate
