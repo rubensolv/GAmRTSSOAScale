@@ -89,8 +89,8 @@ public class Reproduction {
 			int sizeParent1=parent1.getGenes().size();
 			int sizeParent2=parent2.getGenes().size();
 			
-			int breakParent1=rand.nextInt(sizeParent1-1);
-			int breakParent2=rand.nextInt(sizeParent2-1);
+			int breakParent1=rand.nextInt(sizeParent1);
+			int breakParent2=rand.nextInt(sizeParent2);
 			
 			//int maxSize=Math.max(sizeParent1, sizeParent2);
 			
@@ -99,7 +99,7 @@ public class Reproduction {
 				child.addGene(parent1.getGenes().get(i));
 			}
 			
-			for(int i=(breakParent1+1);i<breakParent2;i++)
+			for(int i=(breakParent1);i<(breakParent1+breakParent2+1);i++)
 			{
 				child.addGene(parent2.getGenes().get(i));
 			}
