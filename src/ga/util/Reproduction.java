@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import ga.config.ConfigurationsGA;
 import ga.model.Chromosome;
@@ -53,6 +55,7 @@ public class Reproduction {
 						child.addGene(parent2.getGenes().get(i));
 				}
 			}
+			
 			//The next method is just for avoiding infinite loops, adding a random element if
 			//one with the same key was already added (this can happen because sometimes the resulting
 			//element has the same KEY, and produce that the size of the map be always the same) 
@@ -201,6 +204,45 @@ public class Reproduction {
 		}
 		pop.setChromosomes(chromosomesMutated);
 		return pop;
+		
+	}
+	
+	public static Population RemoveCopies(Population p){
+		
+		//This method replace each gene with a random script with a probability of 10%
+		HashMap<Chromosome, BigDecimal> chromosomesMutated = new HashMap<>();
+		for(Chromosome c : p.getChromosomes().keySet()){
+
+			Chromosome newCh=new Chromosome();
+			newCh.setGenes((ArrayList<Integer>) c.getGenes().clone());
+			// The next code block is for removing duplicates in the cromosome.
+			//List<String> al = new ArrayList<>();
+			// add elements to al, including duplicates
+			Set<Integer> hs = new HashSet<>();
+			hs.addAll(newCh.getGenes());
+			newCh.getGenes().clear();
+			newCh.getGenes().addAll(hs);	
+			
+			//The next method is just for avoiding infinite loops, adding a random element if
+			//one with the same key was already added (this can happen because sometimes the resulting
+			//element has the same KEY, and produce that the size of the map be always the same) 
+			if(chromosomesMutated.containsKey(newCh))
+			{
+				Chromosome tChom = new Chromosome();
+				int sizeCh=rand.nextInt(ConfigurationsGA.SIZE_CHROMOSOME)+1;
+				for (int j = 0; j < sizeCh; j++) {
+					tChom.addGene(rand.nextInt(ConfigurationsGA.QTD_SCRIPTS));
+				}
+				chromosomesMutated.put(tChom, BigDecimal.ZERO);
+			}
+			else
+			{
+				chromosomesMutated.put(newCh, BigDecimal.ZERO);
+			}			
+			
+		}
+		p.setChromosomes(chromosomesMutated);
+		return p;
 		
 	}
 
