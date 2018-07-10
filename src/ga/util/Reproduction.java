@@ -237,7 +237,7 @@ public class Reproduction {
 		
 	}
 	
-	public static Population RemoveCopies(Population p){
+	public static Population RemoveCopies(Population p){ 
 		
 		//This method replace each gene with a random script with a probability of 10%
 		HashMap<Chromosome, BigDecimal> chromosomesMutated = new HashMap<>();
