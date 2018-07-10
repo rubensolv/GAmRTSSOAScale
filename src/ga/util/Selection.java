@@ -36,7 +36,8 @@ public class Selection {
 		//Class Reproduction have the methods for getting new population according the parents obtained before
 		//using crossover and mutation
 		Reproduction rp=new Reproduction(parents);
-		Population newPopulation=rp.UniformCrossover();
+		//Population newPopulation=rp.UniformCrossover();
+		Population newPopulation=rp.Crossover();
 		//System.out.println("printing the new population after crossover");
 		//printMap(newPopulation.getChromosomes());
 		newPopulation=rp.mutation(newPopulation);
@@ -45,7 +46,7 @@ public class Selection {
 		newPopulation=rp.IncreasePopulation(newPopulation);
 		newPopulation=rp.DecreasePopulation(newPopulation);
 		}
-
+		newPopulation=rp.RemoveCopies(newPopulation);
 		//System.out.println("printing the new population after mutation");
 		//printMap(newPopulation.getChromosomes());
 
