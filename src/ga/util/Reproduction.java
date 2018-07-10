@@ -118,7 +118,7 @@ public class Reproduction {
 			}
 			for(int i=breakParent2;i<sizeParent2;i++)
 			{
-				p2sub1.add(parent2.getGenes().get(i));
+				p2sub2.add(parent2.getGenes().get(i));
 			}	
 
 			child1.getGenes().addAll(p1sub1);
