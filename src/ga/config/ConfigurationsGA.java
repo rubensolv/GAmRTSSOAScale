@@ -10,11 +10,11 @@ public final class ConfigurationsGA {
 	//Total de jobs que serão enviados ao cluster
 	public final static int NUMBER_JOBS = 49;
 	//tamanho fixo da elite
-	public final static int SIZE_ELITE = 10;
+	public final static int SIZE_ELITE = 5;
 	//tamanho fixo do k do torneio
 	public final static int K_TOURNMENT = 5;
 	//tamanho fixo dos pais para crossover
-	public final static int SIZE_PARENTSFORCROSSOVER = 6;
+	public final static int SIZE_PARENTSFORCROSSOVER = 8;
 	//taxa mutacao
 	public final static double MUTATION_RATE = 0.05;
 	//Increasing-decreasing index activated
