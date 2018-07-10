@@ -18,7 +18,7 @@ public final class ConfigurationsGA {
 	//taxa mutacao
 	public final static double MUTATION_RATE = 0.05;
 	//Increasing-decreasing index activated
-	public final static boolean INCREASING_INDEX=true;
+	public final static boolean INCREASING_INDEX=false;
 	//increasing rate
 	public final static double INCREASING_RATE = 0.2;
 	//decreasing rate

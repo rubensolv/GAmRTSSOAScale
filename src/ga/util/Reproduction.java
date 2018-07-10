@@ -86,32 +86,61 @@ public class Reproduction {
 			Collections.shuffle(parents);
 			Chromosome parent1=parents.get(0).getKey();
 			Chromosome parent2=parents.get(1).getKey();
-			Chromosome child= new Chromosome();
+			Chromosome child1= new Chromosome();
+			Chromosome child2= new Chromosome();
 
 			//The uniform crossover add to the son one of the parents gene for each position (selected randomly)
 			int sizeParent1=parent1.getGenes().size();
 			int sizeParent2=parent2.getGenes().size();
 			
-			int breakParent1=rand.nextInt(sizeParent1);
-			int breakParent2=rand.nextInt(sizeParent2);
+			int breakParent1=1+rand.nextInt(sizeParent1-1);
+			int breakParent2=1+rand.nextInt(sizeParent2-1);
 			
-			//int maxSize=Math.max(sizeParent1, sizeParent2);
-			
-			for(int i=0;i<breakParent1+1;i++)
-			{
-				child.addGene(parent1.getGenes().get(i));
-			}
-			
-			for(int i=(breakParent1);i<(breakParent1+breakParent2+1);i++)
-			{
-				child.addGene(parent2.getGenes().get(i));
-			}
+			ArrayList<Integer> p1sub1= new ArrayList<>();
+			ArrayList<Integer> p1sub2= new ArrayList<>();
+			ArrayList<Integer> p2sub1= new ArrayList<>();
+			ArrayList<Integer> p2sub2= new ArrayList<>();
 
+			
+			
+			for(int i=0;i<breakParent1;i++)
+			{
+				p1sub1.add(parent1.getGenes().get(i));
+			}
+			for(int i=breakParent1;i<sizeParent1;i++)
+			{
+				p1sub2.add(parent1.getGenes().get(i));
+			}
+			
+			for(int i=0;i<breakParent2;i++)
+			{
+				p2sub1.add(parent2.getGenes().get(i));
+			}
+			for(int i=breakParent2;i<sizeParent2;i++)
+			{
+				p2sub1.add(parent2.getGenes().get(i));
+			}	
+
+			child1.getGenes().addAll(p1sub1);
+			child1.getGenes().addAll(p2sub2);
+			
+			child2.getGenes().addAll(p2sub1);
+			child2.getGenes().addAll(p1sub2);
 
 			//The next method is just for avoiding infinite loops, adding a random element if
 			//one with the same key was already added (this can happen because sometimes the resulting
 			//element has the same KEY, and produce that the size of the map be always the same) 
-			if(newChromosomes.containsKey(child))
+			if(newChromosomes.containsKey(child1))
+			{
+				Chromosome tChom = new Chromosome();
+				int sizeCh=rand.nextInt(ConfigurationsGA.SIZE_CHROMOSOME)+1;
+				for (int j = 0; j < sizeCh; j++) {
+					tChom.addGene(rand.nextInt(ConfigurationsGA.QTD_SCRIPTS));
+				}
+				newChromosomes.put(tChom, BigDecimal.ZERO);
+			}
+			
+			if(newChromosomes.containsKey(child2))
 			{
 				Chromosome tChom = new Chromosome();
 				int sizeCh=rand.nextInt(ConfigurationsGA.SIZE_CHROMOSOME)+1;
@@ -122,7 +151,8 @@ public class Reproduction {
 			}
 
 			//here is added the child!
-			newChromosomes.put(child, BigDecimal.ZERO);
+			newChromosomes.put(child1, BigDecimal.ZERO);
+			newChromosomes.put(child2, BigDecimal.ZERO);
 		}
 		newGeneration=new Population(newChromosomes);
 		return newGeneration;

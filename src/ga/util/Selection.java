@@ -45,7 +45,7 @@ public class Selection {
 		newPopulation=rp.IncreasePopulation(newPopulation);
 		newPopulation=rp.DecreasePopulation(newPopulation);
 		}
-
+		newPopulation=rp.RemoveCopies(newPopulation);
 		//System.out.println("printing the new population after mutation");
 		//printMap(newPopulation.getChromosomes());
 
