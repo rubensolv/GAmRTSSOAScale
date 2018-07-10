@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -248,10 +249,12 @@ public class Reproduction {
 			// The next code block is for removing duplicates in the cromosome.
 			//List<String> al = new ArrayList<>();
 			// add elements to al, including duplicates
-			Set<Integer> hs = new HashSet<>();
-			hs.addAll(newCh.getGenes());
-			newCh.getGenes().clear();
-			newCh.getGenes().addAll(hs);	
+			
+			newCh.setGenes(new ArrayList<Integer>(new LinkedHashSet<Integer>(newCh.getGenes())));
+//			Set<Integer> hs = new HashSet<>();
+//			hs.addAll(newCh.getGenes());
+//			newCh.getGenes().clear();
+//			newCh.getGenes().addAll(hs);	
 			
 			//The next method is just for avoiding infinite loops, adding a random element if
 			//one with the same key was already added (this can happen because sometimes the resulting
