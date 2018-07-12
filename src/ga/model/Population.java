@@ -87,7 +87,6 @@ public class Population {
 			}
 			newChromosomes.put(tChom, BigDecimal.ZERO);
 		}
-		
 		Population pop = new Population(newChromosomes);
 		return pop;
 	}
