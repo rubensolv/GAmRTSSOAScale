@@ -94,8 +94,25 @@ public class Reproduction {
 			int sizeParent1=parent1.getGenes().size();
 			int sizeParent2=parent2.getGenes().size();
 			
-			int breakParent1=1+rand.nextInt(sizeParent1-1);
-			int breakParent2=1+rand.nextInt(sizeParent2-1);
+			int breakParent1;
+			int breakParent2;
+			
+			if(sizeParent1>1)
+			{
+				breakParent1=1+rand.nextInt(sizeParent1-1);
+			}
+			else
+			{
+				breakParent1=0;
+			}
+			if(sizeParent2>1)
+			{
+				breakParent2=1+rand.nextInt(sizeParent2-1);
+			}
+			else
+			{
+				breakParent2=0;
+			}
 			
 			ArrayList<Integer> p1sub1= new ArrayList<>();
 			ArrayList<Integer> p1sub2= new ArrayList<>();
